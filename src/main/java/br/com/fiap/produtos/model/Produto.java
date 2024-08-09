@@ -36,52 +36,59 @@ public class Produto {
         this.categoria = categoria;
     }
 
+
     public Long getId() {
         return id;
+    }
+
+    public Produto setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public Produto setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public Produto setDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
     }
 
     public BigDecimal getPreco() {
         return preco;
     }
 
+    public Produto setPreco(BigDecimal preco) {
+        this.preco = preco;
+        return this;
+    }
+
     public LocalDateTime getDataDeCadastro() {
         return dataDeCadastro;
+    }
+
+    public Produto setDataDeCadastro(LocalDateTime dataDeCadastro) {
+        this.dataDeCadastro = dataDeCadastro;
+        return this;
     }
 
     public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public void setDataDeCadastro(LocalDateTime dataDeCadastro) {
-        this.dataDeCadastro = dataDeCadastro;
-    }
-
-    public void setCategoria(Categoria categoria) {
+    public Produto setCategoria(Categoria categoria) {
         this.categoria = categoria;
+        return this;
     }
 
     @Override
@@ -89,12 +96,12 @@ public class Produto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produto produto = (Produto) o;
-        return id.equals(produto.id);
+        return nome.equals(produto.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(nome);
     }
 
     @Override
