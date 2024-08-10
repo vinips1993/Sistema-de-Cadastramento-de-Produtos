@@ -2,6 +2,9 @@ package br.com.fiap.produtos;
 
 import br.com.fiap.produtos.Repositorio.CategoriaCollectionRepository;
 import br.com.fiap.produtos.Repositorio.ProdutoCollectionRepository;
+import br.com.fiap.produtos.View.CategoriaView;
+import br.com.fiap.produtos.View.Opcao;
+import br.com.fiap.produtos.View.OpcaoView;
 import br.com.fiap.produtos.model.Categoria;
 import br.com.fiap.produtos.model.Produto;
 
@@ -11,17 +14,49 @@ import java.time.LocalDateTime;
 public class Main {
     public static void main(String[] args) {
 
-        Produto produto = new Produto();
-            produto .setNome("Kindle");
-                    produto.setDescricao("E-reader");
-                    produto.setCategoria(CategoriaCollectionRepository.findByNome("eletrônicos").get(0));
-                    produto.setDataDeCadastro(LocalDateTime.now());
-                    produto.setPreco(BigDecimal.valueOf(800));
+        Opcao opcao = null;
 
-        Produto produto1 = ProdutoCollectionRepository.save(produto);
+        do{
+            opcao = OpcaoView.select();
+            switch (opcao){
+                case CADASTRAR_CATEGORIA -> cadastrarCategoria();
+                case CADASTRAR_PRODUTO -> cadastrarProduto();
+                case CONSULTAR_PRODUTO_POR_ID -> consultarProdutoPorId();
+                case CONSULTAR_PRODUTO_POR_CATEGORIA -> consultarProdutoPorCategoria();
+                case ALTERAR_PRODUTO -> alterarProduto();
+                case ENCERRAR_SISTEMA -> encerrarSistema();
+            }
 
-        System.out.println(("ID: " + produto1.getId() + " Nome do Produto: " + produto1.getNome()));
+        }while (opcao != Opcao.ENCERRAR_SISTEMA);
 
+    }
 
+    private static void cadastrarCategoria() {
+
+        CategoriaView view = new CategoriaView();
+        Categoria categoria = view.form();
+        CategoriaCollectionRepository.save(categoria);
+        view.sucesso(categoria);
+
+    }
+
+    private static void cadastrarProduto(){
+
+    }
+
+    private static void consultarProdutoPorId(){
+
+    }
+
+    private static void consultarProdutoPorCategoria(){
+
+    }
+
+    private static void alterarProduto(){
+
+    }
+
+    private static void encerrarSistema(){
+        System.out.println("Sistema Encerrado!");
     }
 }
