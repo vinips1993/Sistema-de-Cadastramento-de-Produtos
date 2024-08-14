@@ -5,11 +5,9 @@ import br.com.fiap.produtos.Repositorio.ProdutoCollectionRepository;
 import br.com.fiap.produtos.View.CategoriaView;
 import br.com.fiap.produtos.View.Opcao;
 import br.com.fiap.produtos.View.OpcaoView;
+import br.com.fiap.produtos.View.ProdutoView;
 import br.com.fiap.produtos.model.Categoria;
 import br.com.fiap.produtos.model.Produto;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,14 +32,17 @@ public class Main {
     private static void cadastrarCategoria() {
 
         CategoriaView view = new CategoriaView();
-        Categoria categoria = view.form();
+        Categoria categoria = view.form(new Categoria());
         CategoriaCollectionRepository.save(categoria);
         view.sucesso(categoria);
 
     }
 
     private static void cadastrarProduto(){
-
+        Produto produto = ProdutoView.form(new Produto()); {
+        ProdutoCollectionRepository.save(produto);
+        ProdutoView.sucesso(produto);
+        }
     }
 
     private static void consultarProdutoPorId(){
@@ -53,7 +54,8 @@ public class Main {
     }
 
     private static void alterarProduto(){
-
+        Produto produto = ProdutoView.select(null);
+        ProdutoView.update(produto);
     }
 
     private static void encerrarSistema(){
