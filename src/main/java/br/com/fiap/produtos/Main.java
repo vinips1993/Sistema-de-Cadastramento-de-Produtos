@@ -9,6 +9,9 @@ import br.com.fiap.produtos.View.ProdutoView;
 import br.com.fiap.produtos.model.Categoria;
 import br.com.fiap.produtos.model.Produto;
 
+import javax.swing.*;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -51,6 +54,17 @@ public class Main {
 
     private static void consultarProdutoPorCategoria(){
 
+        Categoria categoria = CategoriaView.select(null);
+
+        List<Produto> produtos = ProdutoCollectionRepository.findByCategoria(categoria);
+
+        if(produtos.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Não encontramos produtos com a categoria: " +
+                    categoria.getNome());
+        } else {
+            produtos.forEach(ProdutoView::show);
+            produtos.forEach(System.out::println);
+        }
     }
 
     private static void alterarProduto(){

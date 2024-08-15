@@ -80,7 +80,7 @@ public class ProdutoView {
         show(produto);
     }
 
-    private static void show(Produto p) {
+    public static void show(Produto p) {
         System.out.println(p);
 
         String textoFormatado = String.format(
