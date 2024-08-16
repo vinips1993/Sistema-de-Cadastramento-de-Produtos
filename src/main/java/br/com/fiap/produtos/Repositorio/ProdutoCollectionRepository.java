@@ -45,4 +45,13 @@ public class ProdutoCollectionRepository {
     public static List<Produto> findByCategoria(Categoria categoria) {
         return produtos.stream().filter(p->p.getCategoria().equals(categoria)).toList();
     }
+
+    public static Produto findById(Long id) {
+        return produtos.stream()
+                .filter(produto -> produto.getId().equals(id))
+                .findFirst()
+                .orElse(null); // Retorna null se o produto não for encontrado
+    }
+
+    // Outros métodos do repositório, como findByCategoria, etc.
 }
